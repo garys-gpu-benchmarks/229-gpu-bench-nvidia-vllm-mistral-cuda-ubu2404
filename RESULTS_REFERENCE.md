@@ -3,24 +3,24 @@
 **Main goal:** Measure vLLM token generation rate  
 **Tools:** Start python -m vllm.entrypoints.openai.api_server on port 8000, then run scripts/benchmark_serving.py
 
-Reference results measured by the maintainer on the system shown in each section (generator TEMPLATE_00_138 · recorded 2026-11-12). Your own runs write `results/RESULTS_ACTUAL.md` in the same format.
+Reference results measured by the maintainer on the system shown in each section (generator TEMPLATE_00_139 · recorded 2026-11-13). Your own runs write `results/RESULTS_ACTUAL.md` in the same format.
 
 > Smoke runs use deliberately small sizes. They check that the workload installs and runs end to end; their numbers are not performance results. Baseline and extended are.
 
 <!-- profile:smoke -->
 ## smoke
 
-- **System:** 1× NVIDIA H100 NVL (95830 MiB) · AMD EPYC 9374F 32-Core Processor · Ubuntu 24.04.5 LTS · kernel 6.8.0-138-generic · driver 595.91.07
-- **Run:** 2026-11-12T23:40:58Z · status **PASS** (exit 0)
-- **Time (mm:ss):** setup 02:51 · benchmark 00:31 · whole run 03:38
-- **Source:** run 229_20261112_234058
+- **System:** 1× NVIDIA H100 PCIe (81559 MiB) · Intel(R) Xeon(R) Platinum 8352Y CPU @ 2.20GHz · Ubuntu 24.04.5 LTS · kernel 6.8.0-138-generic · driver 595.91.07
+- **Run:** 2026-11-13T15:08:11Z · status **PASS** (exit 0)
+- **Time (mm:ss):** setup 04:52 · benchmark 00:50 · whole run 06:06
+- **Source:** run 229_20261113_150811
 - **Command:** `bash run_benchmark.sh --smoke --model-name mistralai/Mistral-7B-v0.3 --dtype bfloat16 --tensor-parallel-size 1 --gpu-memory-utilization 0.9 --input-len 64 --output-len 16 --max-num-seqs 2 --max-concurrency 2`
 
 | # | Metric | Result |
 |---|---|---|
-| 1 | Generated token rate (output_token_throughput_tokens_sec) | 292.4585925666508 |
-| 2 | TPOT, ms (time_per_output_token_tpot_p50_msec) | 5.733691326652964 |
-| 3 | Time To First Token, ms (ttft_p50_msec) | 16.772957053035498 |
-| 4 | ITL, ms (inter_token_latency_itl_p50_msec) | 5.778418853878975 |
-| 5 | End-to-end request latency p50, ms (end_to_end_request_latency_msec) | 102.77832695282996 |
+| 1 | Generated token rate (output_token_throughput_tokens_sec) | 187.37293740279478 |
+| 2 | TPOT, ms (time_per_output_token_tpot_p50_msec) | 8.955283680309853 |
+| 3 | Time To First Token, ms (ttft_p50_msec) | 25.643804110586643 |
+| 4 | ITL, ms (inter_token_latency_itl_p50_msec) | 9.006695356220007 |
+| 5 | End-to-end request latency p50, ms (end_to_end_request_latency_msec) | 161.6132790222764 |
 <!-- /profile:smoke -->
